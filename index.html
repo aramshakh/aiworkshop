@@ -463,12 +463,13 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   <div class="badge badge-blue">Basics</div>
   <h1>Tools You Need</h1>
   <div class="sub">Set these up before we begin</div>
-  <div class="cards cards-3" style="max-width:720px;margin-left:auto;margin-right:auto">
-    <div class="card" style="border-color:var(--teal)"><div class="card-icon">&#9000;&#65039;</div><h3>Warp Terminal</h3><p>Modern terminal app. Download at warp.dev — makes command line comfortable.</p></div>
-    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#128025;</div><h3>GitHub Account</h3><p>Register at github.com if you don't have one. You'll need it.</p></div>
-    <div class="card" style="border-color:var(--blue)"><div class="card-icon">&#128274;</div><h3>1Password</h3><p>Password manager. Store all tokens &amp; API keys in one place.</p></div>
+  <div class="cards cards-4" style="max-width:740px;margin-left:auto;margin-right:auto">
+    <div class="card" style="border-color:var(--teal)"><div class="card-icon">&#9000;&#65039;</div><h3>Warp Terminal</h3><p>Modern terminal app. Download at warp.dev</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#128025;</div><h3>GitHub Account</h3><p>Register at github.com</p></div>
+    <div class="card" style="border-color:var(--blue)"><div class="card-icon">&#128274;</div><h3>1Password</h3><p>Store all tokens &amp; API keys safely</p></div>
+    <div class="card" style="border-color:var(--amber)"><div class="card-icon">&#128273;</div><h3>AI Model Access</h3><p>You need a paid subscription to at least one: OpenAI, Claude, or Kimi</p></div>
   </div>
-  <div class="callout"><p>These three tools will serve you far beyond today's workshop.</p></div>
+  <div class="callout"><p>OpenClaw connects to an AI model of your choice. <span class="white">No API key = no agent.</span><br>Check that your subscription includes API access.</p></div>
 </div>
 
 <!-- ======== BASICS: AI ASSISTANT ======== -->
@@ -482,6 +483,26 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   </div>
   <p class="big-quote">Stuck on a step? <span class="accent">Ask your AI first.</span></p>
   <div class="callout"><p>Keep Claude or ChatGPT open in a second tab at all times.<br>Paste the error, describe what you're trying to do — it will guide you faster than waiting.</p></div>
+</div>
+
+<!-- ======== DISCLAIMER: CLAUDE + OPENCLAW ======== -->
+<div class="slide">
+  <div class="badge badge-amber">Heads Up</div>
+  <h1>Claude + OpenClaw</h1>
+  <div class="sub">Works great, but read this first</div>
+  <div class="cards cards-2" style="max-width:640px;margin-left:auto;margin-right:auto">
+    <div class="card" style="border-color:var(--green)">
+      <div class="card-icon">&#9989;</div>
+      <h3>Claude API works with OpenClaw</h3>
+      <p>Powerful, fast, great at following agent prompts. Technically one of the best options.</p>
+    </div>
+    <div class="card" style="border-color:var(--error)">
+      <div class="card-icon">&#9888;&#65039;</div>
+      <h3>Risk: Anthropic may ban you</h3>
+      <p>Using a Pro/Max personal subscription for API-like agent calls can violate Anthropic's ToS. Accounts have been banned.</p>
+    </div>
+  </div>
+  <div class="callout callout-amber"><p><span class="white">Recommendation:</span> Use the official Claude API with a separate key, or use OpenAI / Kimi as your model for today. If you use Claude — understand the risk.</p></div>
 </div>
 
 <!-- ======== ROADMAP ======== -->
