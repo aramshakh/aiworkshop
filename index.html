@@ -104,6 +104,11 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
 .about-list li{font-size:1.2rem;color:var(--gray);padding-left:24px;position:relative;margin-bottom:12px;line-height:1.5}
 .about-list li::before{content:'';position:absolute;left:0;top:10px;width:10px;height:10px;border-radius:50%;background:var(--green)}
 
+/* Group slides */
+.slide.group{background:linear-gradient(160deg,rgba(98,100,167,.1) 0%,transparent 50%)}
+.group-icon{width:72px;height:72px;border-radius:50%;background:rgba(98,100,167,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem}
+.badge-purple{background:rgba(98,100,167,.15);color:var(--purple)}
+
 /* QR slide */
 .qr-layout{display:flex;align-items:center;justify-content:center;gap:48px;margin:24px 0}
 .qr-frame{background:#fff;border-radius:16px;padding:14px;flex-shrink:0}
@@ -379,6 +384,32 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   </div>
 </div>
 
+<!-- ======== FORM GROUPS ======== -->
+<div class="slide group">
+  <div class="group-icon">&#128101;</div>
+  <h1>Form Your Groups</h1>
+  <div class="sub">Your table = your team</div>
+  <div class="cards cards-3" style="max-width:720px;margin-left:auto;margin-right:auto">
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#128101;</div><h3>Your Table</h3><p>The people at your table are your group for the rest of the workshop</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#128081;</div><h3>Pick a Captain</h3><p>Who has used a terminal before? You are the captain.</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#129309;</div><h3>Help Each Other</h3><p>If you pass a step first — help your neighbor. No one left behind.</p></div>
+  </div>
+  <p class="big-quote">From now on, every step is a <span class="accent">group effort</span>.</p>
+</div>
+
+<!-- ======== GROUP RULES ======== -->
+<div class="slide group">
+  <div class="group-icon">&#128218;</div>
+  <h1>How Groups Work</h1>
+  <div class="sub">Simple rules</div>
+  <div class="cards cards-2" style="max-width:640px;margin-left:auto;margin-right:auto">
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#9989;</div><h3>Finished a step?</h3><p>Look left, look right. Help someone who is stuck.</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#128680;</div><h3>Whole group stuck?</h3><p>Captain raises hand. I come to you.</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#9200;</div><h3>Group done?</h3><p>Wait for the checkpoint slide. Do not rush ahead alone.</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#127942;</div><h3>Goal</h3><p>Entire table finishes together. Not fastest person — fastest table.</p></div>
+  </div>
+</div>
+
 <!-- ======== SLIDE 18: STEP 1 ======== -->
 <div class="slide">
   <div class="badge badge-blue">Step 1</div>
@@ -406,6 +437,16 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   <div class="callout"><p>If not &mdash; fix it <span class="white">now</span>, not later.</p></div>
 </div>
 
+<!-- ======== GROUP CHECK 1 ======== -->
+<div class="slide group">
+  <div class="group-icon">&#128101;</div>
+  <div class="badge badge-purple">Group Check</div>
+  <h1>Check Your Table</h1>
+  <div class="sub">Does everyone have a server?</div>
+  <p class="big-quote">&#10003; Server &ensp; &#10003; Credentials &ensp; &#10003; IP</p>
+  <div class="callout" style="border-left-color:var(--purple)"><p>If someone at your table is stuck — <span class="white">help them now</span>.<br>Captain: raise hand only if the whole table is blocked.</p></div>
+</div>
+
 <!-- ======== SLIDE 20: STEP 2 ======== -->
 <div class="slide">
   <div class="badge badge-blue">Step 2</div>
@@ -421,6 +462,16 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   <h1>You Are Inside the Server</h1>
   <div class="sub">Checkpoint</div>
   <p class="big-quote">You crossed one of the <span class="accent">biggest beginner barriers</span>.</p>
+</div>
+
+<!-- ======== GROUP CHECK 2 ======== -->
+<div class="slide group">
+  <div class="group-icon">&#128101;</div>
+  <div class="badge badge-purple">Group Check</div>
+  <h1>Check Your Table</h1>
+  <div class="sub">Is everyone connected via SSH?</div>
+  <p class="big-quote">Everyone sees the <span class="accent">server prompt</span>?</p>
+  <div class="callout" style="border-left-color:var(--purple)"><p>This is the hardest step for beginners.<br><span class="white">Captains — walk your table through it.</span></p></div>
 </div>
 
 <!-- ======== SLIDE 22: STEP 3 ======== -->
@@ -441,6 +492,16 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   <h1>Installation Finished</h1>
   <div class="sub">Checkpoint</div>
   <div class="callout callout-amber"><p>If something failed &mdash; <span class="white">do not improvise</span>. Normal troubleshooting point.</p></div>
+</div>
+
+<!-- ======== GROUP CHECK 3 ======== -->
+<div class="slide group">
+  <div class="group-icon">&#128101;</div>
+  <div class="badge badge-purple">Group Check</div>
+  <h1>Check Your Table</h1>
+  <div class="sub">Did installation finish for everyone?</div>
+  <p class="big-quote">No errors? Ready for <span class="accent">onboarding</span>?</p>
+  <div class="callout" style="border-left-color:var(--purple)"><p>If someone got an error — <span class="white">do not skip it</span>.<br>Show your screen to the captain. Solve it together.</p></div>
 </div>
 
 <!-- ======== SLIDE 24: STEP 4 ======== -->
@@ -465,6 +526,16 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   <p class="big-quote">You now have a <span class="accent">live system</span>.</p>
 </div>
 
+<!-- ======== GROUP CHECK 4 ======== -->
+<div class="slide group">
+  <div class="group-icon">&#128101;</div>
+  <div class="badge badge-purple">Group Check</div>
+  <h1>Check Your Table</h1>
+  <div class="sub">Is OpenClaw running for everyone?</div>
+  <p class="big-quote">System active? <span class="accent">Moving to the interface.</span></p>
+  <div class="callout" style="border-left-color:var(--purple)"><p>Almost there. The hard infrastructure part is behind you.</p></div>
+</div>
+
 <!-- ======== SLIDE 26: STEP 5 ======== -->
 <div class="slide">
   <div class="badge badge-blue">Step 5</div>
@@ -479,6 +550,16 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   <h1>The UI Works</h1>
   <div class="sub">Checkpoint</div>
   <p class="big-quote">You have a <span class="accent">working system base</span>.</p>
+</div>
+
+<!-- ======== GROUP CHECK 5 ======== -->
+<div class="slide group">
+  <div class="group-icon">&#128101;</div>
+  <div class="badge badge-purple">Group Check</div>
+  <h1>Check Your Table</h1>
+  <div class="sub">Does the UI open for everyone?</div>
+  <p class="big-quote">If someone's UI doesn't load — <span class="accent">check together</span>.</p>
+  <div class="callout" style="border-left-color:var(--purple)"><p>Common issue: firewall or wrong port.<br><span class="white">Captain — compare URLs across the table.</span></p></div>
 </div>
 
 <!-- ======== SLIDE 28: STEP 6 ======== -->
@@ -514,6 +595,16 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
     <div class="card" style="border-color:var(--green)"><h3>&#10003; Working Agent</h3></div>
   </div>
   <p class="big-quote">Not theory. A <span class="accent">real build</span>.</p>
+</div>
+
+<!-- ======== GROUP CHECK FINAL ======== -->
+<div class="slide group">
+  <div class="group-icon">&#127881;</div>
+  <div class="badge badge-purple">Final Group Check</div>
+  <h1>Check Your Table</h1>
+  <div class="sub">Does everyone have a working agent?</div>
+  <p class="big-quote">&#129302; Every person at your table got a <span class="accent">response</span>?</p>
+  <div class="callout" style="border-left-color:var(--purple)"><p>If yes — <span class="white">congratulations, your whole table shipped today</span>.<br>If someone is close — help them cross the finish line.</p></div>
 </div>
 
 <!-- ======== SLIDE 31: TROUBLESHOOTING ======== -->
