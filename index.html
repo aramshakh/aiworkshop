@@ -6,7 +6,7 @@
 <title>OpenClaw Workshop</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #0C0E12;
@@ -48,13 +48,22 @@ body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml
 /* Inner container */
 .inner{max-width:880px;width:100%}
 
-/* Typography — Space Grotesk headlines, Inter body */
-h1{font-family:'Space Grotesk',sans-serif;font-size:3.6rem;font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.03em;margin-bottom:14px}
-.sub{font-size:1.4rem;color:var(--amber);margin-bottom:36px;font-weight:400;letter-spacing:-.01em}
-.lead{font-size:1.3rem;color:var(--gray);line-height:1.65;margin-bottom:24px}
-.big-quote{font-family:'Space Grotesk',sans-serif;font-size:1.9rem;color:var(--white);font-weight:600;line-height:1.35;margin:28px 0;letter-spacing:-.02em}
+/* ── Type scale (projection-optimized) ──
+   Display:  4.5rem  — section dividers only
+   H1:       3.4rem  — slide headlines
+   Quote:    2.2rem  — key takeaways
+   Sub:      1.5rem  — subtitles (amber, light weight = contrast with h1)
+   Body:     1.2rem  — readable from back row
+   Card:     1.1rem  — card headlines
+   Small:    .85rem  — badges, labels, meta
+   Ratio:    ~1.4 between major tiers
+*/
+h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.03em;margin-bottom:16px}
+.sub{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:var(--amber);margin-bottom:40px;font-weight:300;letter-spacing:-.005em}
+.lead{font-size:1.2rem;color:var(--gray);line-height:1.7;margin-bottom:24px;max-width:54ch}
+.big-quote{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;color:var(--white);font-weight:700;line-height:1.25;margin:32px 0;letter-spacing:-.025em}
 .accent{color:var(--amber)}
-.white{color:var(--white);font-weight:600}
+.white{color:var(--white);font-weight:500}
 
 /* Cards grid */
 .cards{display:grid;gap:14px;margin:28px 0;text-align:left}
@@ -63,9 +72,9 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.6rem;font-weight:700;color
 .cards-4{grid-template-columns:1fr 1fr;max-width:720px;margin-left:auto;margin-right:auto}
 .card{background:var(--bg2);border:2px solid var(--border);border-radius:10px;padding:22px 24px;transition:border-color .25s,transform .25s}
 .card:hover{border-color:color-mix(in srgb,var(--amber) 40%,transparent);transform:translateY(-2px)}
-.card-icon{font-size:1.6rem;margin-bottom:8px}
-.card h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;color:var(--white);font-weight:600;margin-bottom:5px;letter-spacing:-.01em}
-.card p{font-size:.95rem;color:var(--gray);line-height:1.5}
+.card-icon{font-size:1.5rem;margin-bottom:8px}
+.card h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;color:var(--white);font-weight:700;margin-bottom:4px;letter-spacing:-.01em}
+.card p{font-size:.95rem;color:var(--gray);line-height:1.55}
 
 /* Minimal list */
 .items{list-style:none;display:flex;flex-direction:column;gap:14px;margin:20px 0}
@@ -74,13 +83,14 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.6rem;font-weight:700;color
 
 /* Callout */
 .callout{background:var(--bg2);border-radius:8px;padding:24px 28px;margin:24px auto;max-width:660px;border-left:3px solid var(--amber);position:relative}
-.callout p{font-size:1.15rem;color:var(--gray);line-height:1.6;margin:0}
+.callout p{font-size:1.1rem;color:var(--gray);line-height:1.65;margin:0}
 .callout-amber{border-left-color:var(--amber)}
 
 /* Section divider */
 .slide.divider{background:linear-gradient(135deg,var(--bg2) 0%,var(--bg) 100%)}
-.divider .part-label{font-family:'Space Grotesk',sans-serif;font-size:.85rem;text-transform:uppercase;letter-spacing:.25em;color:var(--amber);font-weight:600;margin-bottom:16px}
-.divider h1{font-size:4.5rem;letter-spacing:-.04em}
+.divider .part-label{font-family:'Space Grotesk',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.3em;color:var(--amber);font-weight:500;margin-bottom:20px}
+.divider h1{font-size:4.8rem;letter-spacing:-.045em;font-weight:700}
+.divider .sub{font-weight:300;color:var(--dim);font-size:1.3rem}
 
 /* Checkpoint */
 .slide.checkpoint{background:linear-gradient(160deg,rgba(0,172,71,.06) 0%,var(--bg) 60%)}
@@ -108,8 +118,8 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.6rem;font-weight:700;color
 /* About me — special left-aligned layout */
 .about-slide{text-align:left;align-items:flex-start}
 .about-inner{max-width:960px;width:100%}
-.about-inner h1{font-size:3.2rem}
-.about-inner .sub{font-size:1.25rem;margin-bottom:28px}
+.about-inner h1{font-size:3rem}
+.about-inner .sub{font-size:1.2rem;margin-bottom:28px;font-weight:300}
 .about-row{display:flex;align-items:flex-start;gap:44px}
 .about-left{display:flex;flex-direction:column;align-items:center;gap:16px;flex-shrink:0}
 .photo{width:200px;height:200px;border-radius:12px;overflow:hidden;border:3px solid var(--amber);flex-shrink:0}
@@ -121,7 +131,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.6rem;font-weight:700;color
 .tag{font-family:'Space Grotesk',sans-serif;display:inline-block;padding:5px 14px;border-radius:4px;font-size:.8rem;font-weight:600;background:var(--bg2);border:1px solid var(--border);color:var(--dim)}
 .tag-green{background:rgba(232,145,58,.1);border-color:rgba(232,145,58,.25);color:var(--amber)}
 .about-list{list-style:none;margin:16px 0}
-.about-list li{font-size:1.15rem;color:var(--gray);padding-left:24px;position:relative;margin-bottom:12px;line-height:1.55}
+.about-list li{font-size:1.1rem;color:var(--gray);padding-left:24px;position:relative;margin-bottom:12px;line-height:1.6}
 .about-list li::before{content:'';position:absolute;left:0;top:10px;width:8px;height:8px;border-radius:2px;background:var(--amber);transform:rotate(45deg)}
 
 /* Group slides */
@@ -168,6 +178,10 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.6rem;font-weight:700;color
 .nav:hover{opacity:1}
 .nav button{font-family:'Space Grotesk',sans-serif;background:var(--bg2);border:2px solid var(--border);color:var(--gray);width:38px;height:38px;border-radius:6px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .nav button:hover{background:var(--bg3);color:var(--white);border-color:var(--dim);transform:translateY(-1px)}
+
+/* Title slide — hero moment */
+.slide:first-child h1{font-size:4.2rem;letter-spacing:-.04em}
+.slide:first-child .sub{font-size:1.6rem;font-weight:300}
 
 /* Responsive */
 @media(max-width:768px){
