@@ -180,6 +180,20 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
 .nav button{font-family:'Space Grotesk',sans-serif;background:var(--bg2);border:2px solid var(--border);color:var(--gray);width:38px;height:38px;border-radius:6px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .nav button:hover{background:var(--bg3);color:var(--white);border-color:var(--dim);transform:translateY(-1px)}
 
+/* Timeline */
+.timeline{display:flex;gap:0;margin:32px auto;max-width:760px;position:relative}
+.timeline::before{content:'';position:absolute;top:22px;left:0;right:0;height:2px;background:var(--border)}
+.tl-block{flex:1;position:relative;text-align:left;padding-top:36px}
+.tl-block::before{content:'';position:absolute;top:16px;left:0;width:12px;height:12px;border-radius:3px;background:var(--bg);border:2px solid var(--amber);transform:rotate(45deg);z-index:1}
+.tl-block:nth-child(2)::before{border-color:var(--blue);left:50%;margin-left:-6px}
+.tl-block:nth-child(3)::before{border-color:var(--green);left:auto;right:0}
+.tl-block:nth-child(2){text-align:center}
+.tl-block:nth-child(3){text-align:right}
+.tl-time{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:700;color:var(--dim);letter-spacing:.06em;margin-bottom:6px}
+.tl-label{font-family:'Space Grotesk',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;font-weight:500;margin-bottom:2px}
+.tl-title{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.tl-desc{font-size:.9rem;color:var(--gray);line-height:1.4}
+
 /* Title slide — hero moment */
 .slide:first-child{background:radial-gradient(ellipse at 50% 60%,rgba(232,145,58,.06) 0%,transparent 60%)}
 .slide:first-child h1{font-size:4.2rem;letter-spacing:-.04em}
@@ -217,6 +231,43 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
     <div class="card"><div class="card-icon">&#9881;&#65039;</div><h3>Set Up</h3><p>Server + OpenClaw</p></div>
     <div class="card"><div class="card-icon">&#128640;</div><h3>Launch</h3><p>Your first agent</p></div>
     <div class="card"><div class="card-icon">&#128172;</div><h3>Connect</h3><p>Telegram channel</p></div>
+  </div>
+</div>
+
+<!-- ======== HOW TODAY WORKS ======== -->
+<div class="slide">
+  <h1>How Today Works</h1>
+  <div class="sub">3 hours &middot; 3 parts &middot; 1 working agent</div>
+  <div class="timeline">
+    <div class="tl-block">
+      <div class="tl-time">~45 min</div>
+      <div class="tl-content">
+        <div class="tl-label" style="color:var(--amber)">Part 1</div>
+        <div class="tl-title">Understanding Agents</div>
+        <div class="tl-desc">What agents are, how the system works, why OpenClaw</div>
+      </div>
+    </div>
+    <div class="tl-block">
+      <div class="tl-time">~90 min</div>
+      <div class="tl-content">
+        <div class="tl-label" style="color:var(--blue)">Part 2</div>
+        <div class="tl-title">Hands-On Setup</div>
+        <div class="tl-desc">7 steps from zero to a working agent. Group work. Break in the middle.</div>
+      </div>
+    </div>
+    <div class="tl-block">
+      <div class="tl-time">~45 min</div>
+      <div class="tl-content">
+        <div class="tl-label" style="color:var(--green)">Part 3</div>
+        <div class="tl-title">Free Build + Closing</div>
+        <div class="tl-desc">Customize your agent. Build your idea. Contest winner announced.</div>
+      </div>
+    </div>
+  </div>
+  <div class="cards cards-3" style="max-width:600px;margin:24px auto 0">
+    <div class="card" style="padding:14px 18px;text-align:center"><h3>&#9749; Break</h3><p>After step 3</p></div>
+    <div class="card" style="padding:14px 18px;text-align:center"><h3>&#128101; Groups</h3><p>Work at your table</p></div>
+    <div class="card" style="padding:14px 18px;text-align:center"><h3>&#129302; AI Helper</h3><p>Use Claude / ChatGPT</p></div>
   </div>
 </div>
 
