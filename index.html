@@ -1102,9 +1102,10 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
 
 <script>
 const S=document.querySelectorAll('.slide'),T=S.length;let C=0;
-function go(i){if(i<0||i>=T)return;S[C].classList.remove('active');C=i;S[C].classList.add('active');
+function go(i,updateHash=true){if(i<0||i>=T)return;S[C].classList.remove('active');C=i;S[C].classList.add('active');
 document.getElementById('prog').style.width=((C+1)/T*100)+'%';
-document.getElementById('ctr').textContent=(C+1)+' / '+T}
+document.getElementById('ctr').textContent=(C+1)+' / '+T;
+if(updateHash)history.replaceState(null,null,'#'+(C+1))}
 function next(){go(C+1)}function prev(){go(C-1)}
 document.addEventListener('keydown',e=>{
 if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next()}
@@ -1113,8 +1114,9 @@ else if(e.key==='Home'){e.preventDefault();go(0)}
 else if(e.key==='End'){e.preventDefault();go(T-1)}});
 let tx=0;
 document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX},{passive:true});
-document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?next():prev()}});
-go(0);
+document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?next():prev()}},{passive:true});
+window.addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1));if(n>=1&&n<=T)go(n-1,false)});
+const startSlide=parseInt(location.hash.slice(1))||1;go(Math.max(0,Math.min(startSlide-1,T-1)));
 
 // Timer system
 const timers = {};
