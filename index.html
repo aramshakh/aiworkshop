@@ -133,6 +133,14 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
 .qr-right{text-align:left}
 .qr-right .lead{font-size:1.25rem}
 
+/* Global branding footer */
+.branding{position:fixed;top:20px;right:28px;display:flex;align-items:center;gap:10px;z-index:100;opacity:.35;transition:opacity .3s}
+.branding:hover{opacity:.7}
+.branding-mark{width:28px;height:28px;border-radius:7px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.branding-text{display:flex;flex-direction:column;line-height:1.15}
+.branding-name{font-size:.75rem;font-weight:700;color:var(--white);letter-spacing:.04em}
+.branding-tagline{font-size:.55rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+
 /* Progress */
 .progress{position:fixed;bottom:0;left:0;height:3px;background:var(--green);transition:width .4s cubic-bezier(.22,.68,0,1);z-index:100}
 .counter{position:fixed;bottom:18px;left:28px;font-size:.8rem;color:var(--dim);z-index:100}
@@ -212,17 +220,20 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
 <div class="slide">
   <div class="inner">
     <h1>Agentic EVN</h1>
-    <div class="sub">Join the community</div>
+    <div class="sub">Ship agents, not prompts.</div>
     <div class="qr-layout">
       <div class="qr-frame">
         <img src="qr-agentic-evn.png" alt="Join Agentic EVN">
       </div>
       <div class="qr-right">
         <p class="big-quote">Scan &rarr; Join &rarr; Build</p>
-        <ul class="items">
-          <li><span class="dot"></span>Learn by doing</li>
-          <li><span class="dot"></span>Build in public</li>
-          <li><span class="dot"></span>Help each other get unstuck</li>
+        <div class="cards cards-1" style="margin:16px 0;text-align:left">
+          <div class="card" style="border-color:var(--green);padding:16px 20px"><h3>Not a chat about AI.</h3><p>A builder community. We ship autonomous systems, not prompts.</p></div>
+        </div>
+        <ul class="items" style="align-items:flex-start">
+          <li><span class="dot"></span>Architecture patterns &amp; multi-agent orchestration</li>
+          <li><span class="dot"></span>Debugging, frameworks, real technical support</li>
+          <li><span class="dot"></span>Show &amp; Tell: demos, repos, working agents</li>
         </ul>
       </div>
     </div>
@@ -776,6 +787,14 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
   <h1>Keep Building</h1>
   <div class="sub">This is a starting point, not a finish line</div>
   <p class="big-quote">The people who get value are not the smartest in the room.<br>They are the ones who <span class="accent">keep building</span>.</p>
+</div>
+
+<div class="branding">
+  <div class="branding-mark">A</div>
+  <div class="branding-text">
+    <span class="branding-name">Agentic EVN</span>
+    <span class="branding-tagline">Ship agents, not prompts</span>
+  </div>
 </div>
 
 <div class="progress" id="prog"></div>
