@@ -134,16 +134,17 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
 .qr-right .lead{font-size:1.25rem}
 
 /* Global branding footer */
-.branding{position:fixed;top:20px;right:28px;display:flex;align-items:center;gap:10px;z-index:100;opacity:.35;transition:opacity .3s}
-.branding:hover{opacity:.7}
-.branding-mark{width:28px;height:28px;border-radius:7px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.branding{position:fixed;bottom:14px;left:28px;display:flex;align-items:center;gap:10px;z-index:100;opacity:.4;transition:opacity .3s}
+.branding:hover{opacity:.8}
+.branding-logo{width:32px;height:32px;border-radius:50%;overflow:hidden}
+.branding-logo img{width:100%;height:100%;object-fit:cover}
 .branding-text{display:flex;flex-direction:column;line-height:1.15}
 .branding-name{font-size:.75rem;font-weight:700;color:var(--white);letter-spacing:.04em}
 .branding-tagline{font-size:.55rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
 
 /* Progress */
 .progress{position:fixed;bottom:0;left:0;height:3px;background:var(--green);transition:width .4s cubic-bezier(.22,.68,0,1);z-index:100}
-.counter{position:fixed;bottom:18px;left:28px;font-size:.8rem;color:var(--dim);z-index:100}
+.counter{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:.8rem;color:var(--dim);z-index:100}
 .nav{position:fixed;bottom:14px;right:24px;display:flex;gap:6px;z-index:100;opacity:.3;transition:opacity .3s}
 .nav:hover{opacity:1}
 .nav button{background:var(--bg2);border:1px solid var(--border);color:var(--gray);width:40px;height:40px;border-radius:8px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
@@ -410,6 +411,31 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
     <div class="card" style="border-color:var(--amber)"><div class="card-icon">&#128293;</div><h3>Fast-Moving</h3><p>Breaking changes happen. Community skills can be malicious — vet before installing.</p></div>
   </div>
   <div class="callout callout-amber"><p>Real trade-offs. We chose OpenClaw because for today's goal — <span class="white">shipping your first agent</span> — it is the fastest path.</p></div>
+</div>
+
+<!-- ======== CONTEST ======== -->
+<div class="slide">
+  <div class="badge badge-amber">Contest</div>
+  <h1>Win 1 Hour of Free Consulting</h1>
+  <div class="sub">1-on-1 with Aram</div>
+  <div class="cards cards-3" style="max-width:720px;margin-left:auto;margin-right:auto">
+    <div class="card" style="border-color:var(--amber)">
+      <div class="card-icon">&#128247;</div>
+      <h3>1. Take a Photo</h3>
+      <p>Snap a pic at the workshop. You in it, the vibe, the screen — anything real.</p>
+    </div>
+    <div class="card" style="border-color:var(--amber)">
+      <div class="card-icon">&#128225;</div>
+      <h3>2. Post It</h3>
+      <p>Share on your socials.<br>Tag <strong style="color:var(--amber)">@aram</strong> + <strong style="color:var(--amber)">@agenticevn</strong><br>Hashtag: <strong style="color:var(--amber)">#AgenticEVN</strong></p>
+    </div>
+    <div class="card" style="border-color:var(--amber)">
+      <div class="card-icon">&#127942;</div>
+      <h3>3. Win</h3>
+      <p>Random winner gets <strong style="color:var(--green)">1 hour free consulting</strong> — AI agents, product, architecture. 1-on-1.</p>
+    </div>
+  </div>
+  <div class="callout callout-amber"><p>My AI agent will pick the winner by <strong style="color:var(--amber)">#AgenticEVN</strong> hashtag. Post now — winner announced at the end.</p></div>
 </div>
 
 <!-- ======== SECTION: SETUP ======== -->
@@ -790,7 +816,7 @@ h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-sp
 </div>
 
 <div class="branding">
-  <div class="branding-mark">A</div>
+  <div class="branding-logo"><img src="agentic-evn-logo.jpg" alt="Agentic EVN"></div>
   <div class="branding-text">
     <span class="branding-name">Agentic EVN</span>
     <span class="branding-tagline">Ship agents, not prompts</span>
