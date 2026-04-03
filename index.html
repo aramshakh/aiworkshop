@@ -27,8 +27,9 @@
 html,body{height:100%;overflow:hidden}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--gray);-webkit-font-smoothing:antialiased}
 
-/* Subtle noise texture on body */
-body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+/* Subtle noise texture + warm vignette */
+body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(232,145,58,.04) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(0,172,71,.03) 0%,transparent 40%);pointer-events:none;z-index:0}
 
 /* Deck */
 .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:56px 72px 68px;z-index:1}
@@ -81,10 +82,10 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
 .items li{font-size:1.25rem;color:var(--gray);display:flex;align-items:center;justify-content:center;gap:12px}
 .items li .dot{width:8px;height:8px;border-radius:2px;background:var(--amber);flex-shrink:0;transform:rotate(45deg)}
 
-/* Callout */
-.callout{background:var(--bg2);border-radius:8px;padding:24px 28px;margin:24px auto;max-width:660px;border-left:3px solid var(--amber);position:relative}
+/* Callout — tinted background instead of just border-left */
+.callout{background:linear-gradient(135deg,color-mix(in srgb,var(--amber) 6%,var(--bg2)),var(--bg2));border-radius:8px;padding:24px 28px;margin:24px auto;max-width:660px;border:1px solid color-mix(in srgb,var(--amber) 12%,transparent);position:relative}
 .callout p{font-size:1.1rem;color:var(--gray);line-height:1.65;margin:0}
-.callout-amber{border-left-color:var(--amber)}
+.callout-amber{border-color:color-mix(in srgb,var(--amber) 20%,transparent);background:linear-gradient(135deg,color-mix(in srgb,var(--amber) 8%,var(--bg2)),var(--bg2))}
 
 /* Section divider */
 .slide.divider{background:linear-gradient(135deg,var(--bg2) 0%,var(--bg) 100%)}
@@ -180,8 +181,15 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
 .nav button:hover{background:var(--bg3);color:var(--white);border-color:var(--dim);transform:translateY(-1px)}
 
 /* Title slide — hero moment */
+.slide:first-child{background:radial-gradient(ellipse at 50% 60%,rgba(232,145,58,.06) 0%,transparent 60%)}
 .slide:first-child h1{font-size:4.2rem;letter-spacing:-.04em}
 .slide:first-child .sub{font-size:1.6rem;font-weight:300}
+
+/* Slide accent line — top edge glow */
+.slide.checkpoint::before,.slide.group::before,.slide.divider::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;z-index:2}
+.slide.checkpoint::before{background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.slide.group::before{background:linear-gradient(90deg,transparent,var(--purple),transparent)}
+.slide.divider::before{background:linear-gradient(90deg,transparent,var(--amber),transparent)}
 
 /* Responsive */
 @media(max-width:768px){
