@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw Workshop</title>
+<style>
+:root {
+  --bg: #0F1117;
+  --bg2: #181B23;
+  --bg3: #1E222C;
+  --border: #2A2F3A;
+  --green: #00AC47;
+  --blue: #2D8CFF;
+  --teal: #14B8A6;
+  --purple: #6264A7;
+  --amber: #F59E0B;
+  --white: #FFFFFF;
+  --gray: #8B95A8;
+  --dim: #555E70;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font-family:system-ui,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--gray)}
+
+/* Deck */
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 64px 64px}
+.slide.active{display:flex;animation:fadeUp .4s cubic-bezier(.22,.68,0,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* Inner container */
+.inner{max-width:840px;width:100%}
+
+/* Typography */
+h1{font-size:3.4rem;font-weight:700;color:var(--white);line-height:1.1;letter-spacing:-.02em;margin-bottom:12px}
+.sub{font-size:1.5rem;color:var(--green);margin-bottom:36px;font-weight:400}
+.lead{font-size:1.4rem;color:var(--gray);line-height:1.6;margin-bottom:24px}
+.big-quote{font-size:1.8rem;color:var(--white);font-weight:600;line-height:1.4;margin:24px 0}
+.accent{color:var(--green)}
+.white{color:var(--white);font-weight:600}
+
+/* Cards grid */
+.cards{display:grid;gap:16px;margin:28px 0;text-align:left}
+.cards-2{grid-template-columns:1fr 1fr}
+.cards-3{grid-template-columns:1fr 1fr 1fr}
+.cards-4{grid-template-columns:1fr 1fr;max-width:700px;margin-left:auto;margin-right:auto}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px}
+.card-icon{font-size:1.8rem;margin-bottom:10px}
+.card h3{font-size:1.1rem;color:var(--white);font-weight:600;margin-bottom:6px}
+.card p{font-size:1rem;color:var(--gray);line-height:1.5}
+
+/* Minimal list */
+.items{list-style:none;display:flex;flex-direction:column;gap:12px;margin:20px 0}
+.items li{font-size:1.3rem;color:var(--gray);display:flex;align-items:center;justify-content:center;gap:12px}
+.items li .dot{width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+/* Callout */
+.callout{background:var(--bg2);border-radius:14px;padding:28px 32px;margin:24px auto;max-width:640px;border-left:4px solid var(--green)}
+.callout p{font-size:1.2rem;color:var(--gray);line-height:1.6;margin:0}
+.callout-amber{border-left-color:var(--amber)}
+
+/* Section divider */
+.slide.divider{background:var(--bg2)}
+.divider .part-label{font-size:.9rem;text-transform:uppercase;letter-spacing:.2em;color:var(--green);font-weight:600;margin-bottom:16px}
+.divider h1{font-size:3.8rem}
+
+/* Checkpoint */
+.slide.checkpoint{background:linear-gradient(160deg,rgba(0,172,71,.08) 0%,transparent 50%)}
+.check-circle{width:72px;height:72px;border-radius:50%;background:rgba(0,172,71,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.check-circle svg{width:36px;height:36px;color:var(--green)}
+
+/* Step badge */
+.badge{display:inline-block;padding:6px 16px;border-radius:8px;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.badge-blue{background:rgba(45,140,255,.12);color:var(--blue)}
+.badge-amber{background:rgba(245,158,11,.12);color:var(--amber)}
+.badge-green{background:rgba(0,172,71,.12);color:var(--green)}
+
+/* Architecture diagram */
+.arch{display:flex;align-items:center;justify-content:center;gap:8px;margin:32px 0;flex-wrap:wrap}
+.node{background:var(--bg2);border:2px solid var(--border);border-radius:14px;padding:18px 24px;text-align:center;min-width:110px}
+.node .n-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);margin-bottom:4px}
+.node .n-name{font-size:1.15rem;font-weight:600;color:var(--white)}
+.node-green{border-color:var(--green)}.node-blue{border-color:var(--blue)}
+.node-teal{border-color:var(--teal)}.node-purple{border-color:var(--purple)}
+.node-emerald{border-color:#10B981}
+.arrow{color:var(--dim);font-size:1.3rem}
+
+/* About me */
+.about-row{display:flex;align-items:center;justify-content:center;gap:40px;margin-bottom:28px}
+.photo{width:160px;height:160px;border-radius:50%;overflow:hidden;border:3px solid var(--green);flex-shrink:0}
+.photo img{width:100%;height:100%;object-fit:cover}
+.about-info{text-align:left}
+.about-info h1{font-size:2.6rem;margin-bottom:4px}
+.about-info .sub{font-size:1.15rem;margin-bottom:12px}
+.brand-row{display:flex;gap:12px;margin-bottom:12px}
+.brand{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:6px 14px;display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--dim);font-weight:500}
+.stats-row{display:flex;gap:20px;margin-top:20px}
+.stat{text-align:center}
+.stat .stat-num{font-size:2rem;font-weight:700;color:var(--green)}
+.stat .stat-label{font-size:.8rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+
+/* QR slide */
+.qr-layout{display:flex;align-items:center;justify-content:center;gap:48px;margin:24px 0}
+.qr-frame{background:#fff;border-radius:16px;padding:14px;flex-shrink:0}
+.qr-frame img{width:200px;height:200px;display:block}
+.qr-right{text-align:left}
+.qr-right .lead{font-size:1.25rem}
+
+/* Progress */
+.progress{position:fixed;bottom:0;left:0;height:3px;background:var(--green);transition:width .4s cubic-bezier(.22,.68,0,1);z-index:100}
+.counter{position:fixed;bottom:18px;left:28px;font-size:.8rem;color:var(--dim);z-index:100}
+.nav{position:fixed;bottom:14px;right:24px;display:flex;gap:6px;z-index:100;opacity:.3;transition:opacity .3s}
+.nav:hover{opacity:1}
+.nav button{background:var(--bg2);border:1px solid var(--border);color:var(--gray);width:40px;height:40px;border-radius:8px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav button:hover{background:var(--bg3);color:var(--white)}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide{padding:28px 24px 52px}
+  h1{font-size:2.2rem}.divider h1{font-size:2.6rem}
+  .sub{font-size:1.1rem}.lead{font-size:1.1rem}
+  .cards-2,.cards-3{grid-template-columns:1fr}
+  .cards-4{grid-template-columns:1fr}
+  .arch{flex-direction:column}.arrow{transform:rotate(90deg)}
+  .about-row{flex-direction:column}.about-info{text-align:center}
+  .qr-layout{flex-direction:column}
+  .brand-row{justify-content:center}
+  .stats-row{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ======== SLIDE 1: TITLE ======== -->
+<div class="slide">
+  <h1>OpenClaw Workshop</h1>
+  <div class="sub">From zero to your first working AI agent</div>
+  <p class="lead">No programming experience required</p>
+  <div class="cards cards-4">
+    <div class="card"><div class="card-icon">&#128300;</div><h3>Understand</h3><p>What an AI agent is</p></div>
+    <div class="card"><div class="card-icon">&#9881;&#65039;</div><h3>Set Up</h3><p>Server + OpenClaw</p></div>
+    <div class="card"><div class="card-icon">&#128640;</div><h3>Launch</h3><p>Your first agent</p></div>
+    <div class="card"><div class="card-icon">&#128172;</div><h3>Connect</h3><p>Telegram channel</p></div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 2: ABOUT ME ======== -->
+<div class="slide">
+  <div class="inner">
+    <div class="about-row">
+      <div class="photo"><img src="aram-photo.jpg" alt="Aram"></div>
+      <div class="about-info">
+        <h1>Aram Shahnazaryan</h1>
+        <div class="sub">Founder @ Empy.ai</div>
+        <div class="brand-row">
+          <div class="brand">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09A6.97 6.97 0 0 1 5.48 12c0-.72.13-1.43.36-2.09V7.07H2.18A11.96 11.96 0 0 0 .96 12c0 1.94.46 3.77 1.22 5.33l3.66-2.84z" fill="#FBBC05"/><path d="M12 4.75c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 1.09 14.97 0 12 0 7.7 0 3.99 2.47 2.18 6.07l3.66 2.84c.87-2.6 3.3-4.16 6.16-4.16z" fill="#EA4335"/></svg>
+            ex-Google
+          </div>
+          <div class="brand">
+            <svg width="18" height="14" viewBox="0 0 24 18" fill="var(--gray)"><path d="M12 0L9 5.2 6 10.4h4l2-3.5 2 3.5h4L15 5.2 12 0zM4 13L1 18h6l-3-5zM12 13l-3 5h6l-3-5zM20 13l-3 5h6l-3-5z"/></svg>
+            ex-Adidas
+          </div>
+          <div class="brand">&#127891; Draper University</div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Production Agents</div></div>
+      <div class="stat"><div class="stat-num">&lt;3s</div><div class="stat-label">Real-time Latency</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Backend Revisions</div></div>
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Years in Tech</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 3: AGENTIC EVN + QR ======== -->
+<div class="slide">
+  <div class="inner">
+    <h1>Agentic EVN</h1>
+    <div class="sub">Join the community</div>
+    <div class="qr-layout">
+      <div class="qr-frame">
+        <img src="qr-agentic-evn.png" alt="Join Agentic EVN">
+      </div>
+      <div class="qr-right">
+        <p class="big-quote">Scan &rarr; Join &rarr; Build</p>
+        <ul class="items">
+          <li><span class="dot"></span>Learn by doing</li>
+          <li><span class="dot"></span>Build in public</li>
+          <li><span class="dot"></span>Help each other get unstuck</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 4: OUTCOMES ======== -->
+<div class="slide">
+  <h1>By the End of Today</h1>
+  <div class="sub">You will have</div>
+  <div class="cards cards-4">
+    <div class="card"><div class="card-icon">&#9729;&#65039;</div><h3>Cloud Server</h3><p>Your own remote machine</p></div>
+    <div class="card"><div class="card-icon">&#9889;</div><h3>OpenClaw</h3><p>Installed &amp; configured</p></div>
+    <div class="card"><div class="card-icon">&#128241;</div><h3>Telegram Bot</h3><p>Connected channel</p></div>
+    <div class="card"><div class="card-icon">&#129302;</div><h3>Working Agent</h3><p>Responding to you</p></div>
+  </div>
+</div>
+
+<!-- ======== SECTION: UNDERSTANDING AGENTS ======== -->
+<div class="slide divider">
+  <div class="part-label">Part 1</div>
+  <h1>Understanding Agents</h1>
+  <div class="sub" style="color:var(--dim)">What they are and how the system works</div>
+</div>
+
+<!-- ======== SLIDE 6: WHAT IS AN AGENT ======== -->
+<div class="slide">
+  <h1>What Is an AI Agent?</h1>
+  <div class="sub">More than a chatbot</div>
+  <div class="cards cards-2" style="max-width:640px;margin-left:auto;margin-right:auto">
+    <div class="card" style="border-color:var(--dim)"><div class="card-icon">&#128172;</div><h3>Chatbot</h3><p>You ask &rarr; it answers</p></div>
+    <div class="card" style="border-color:var(--green)"><div class="card-icon">&#9889;</div><h3>Agent</h3><p>Gets a task &rarr; uses tools &rarr; delivers results</p></div>
+  </div>
+  <p class="big-quote">A chatbot talks. An agent <span class="accent">works</span>.</p>
+</div>
+
+<!-- ======== SLIDE 7: AGENT VS CHATGPT ======== -->
+<div class="slide">
+  <h1>Agent vs ChatGPT</h1>
+  <div class="sub">A different category</div>
+  <div class="cards cards-2" style="max-width:640px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#128221;</div><h3>ChatGPT</h3><p>Can help <em>draft</em> a message</p></div>
+    <div class="card" style="border-color:var(--green)"><div class="card-icon">&#128640;</div><h3>Agent</h3><p>Drafts it, organizes it, and <strong style="color:var(--green)">sends it</strong></p></div>
+  </div>
+  <p class="lead" style="margin-top:28px">This changes what AI can do for <span class="white">real work</span>.</p>
+</div>
+
+<!-- ======== SLIDE 8: WHERE AGENTS ARE USEFUL ======== -->
+<div class="slide">
+  <h1>Where Agents Are Useful</h1>
+  <div class="sub">Real examples, not hype</div>
+  <div class="cards cards-4">
+    <div class="card"><div class="card-icon">&#128172;</div><h3>Telegram Assistant</h3><p>Reply faster &amp; smarter</p></div>
+    <div class="card"><div class="card-icon">&#128269;</div><h3>Research</h3><p>Summarize information</p></div>
+    <div class="card"><div class="card-icon">&#128203;</div><h3>Workflow</h3><p>Organize tasks</p></div>
+    <div class="card"><div class="card-icon">&#128188;</div><h3>Business</h3><p>Follow defined processes</p></div>
+  </div>
+  <p class="lead">A <span class="white">small agent with one useful job</span> &gt; complex system with no clear use case.</p>
+</div>
+
+<!-- ======== SLIDE 9: WHAT WE BUILD ======== -->
+<div class="slide">
+  <h1>What We Build Today</h1>
+  <div class="sub">A simple first agent</div>
+  <div class="cards cards-4" style="max-width:560px">
+    <div class="card"><div class="card-icon">&#129302;</div><h3>Clear Role</h3></div>
+    <div class="card"><div class="card-icon">&#127912;</div><h3>Usable Interface</h3></div>
+    <div class="card"><div class="card-icon">&#128172;</div><h3>Telegram Channel</h3></div>
+    <div class="card"><div class="card-icon">&#127919;</div><h3>Your First Win</h3></div>
+  </div>
+  <p class="big-quote">First win, <span class="accent">not</span> complexity.</p>
+</div>
+
+<!-- ======== SLIDE 10: ARCHITECTURE ======== -->
+<div class="slide">
+  <h1>How the System Works</h1>
+  <div class="sub">The simplest mental model</div>
+  <div class="arch">
+    <div class="node node-green"><div class="n-label">You</div><div class="n-name">Instructions</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="node node-blue"><div class="n-label">Channel</div><div class="n-name">Telegram</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="node node-teal"><div class="n-label">Platform</div><div class="n-name">OpenClaw</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="node node-purple"><div class="n-label">AI Model</div><div class="n-name">Claude / GPT</div></div>
+    <div class="arrow">&rarr;</div>
+    <div class="node node-emerald"><div class="n-label">Output</div><div class="n-name">Response</div></div>
+  </div>
+  <div class="callout"><p>Understand this flow and the rest becomes easy.</p></div>
+</div>
+
+<!-- ======== SLIDE 11: WHAT IS A SERVER ======== -->
+<div class="slide">
+  <h1>What Is a Server?</h1>
+  <div class="sub">A computer on the internet</div>
+  <p class="big-quote">The place where your agent <span class="accent">lives</span></p>
+  <div class="cards cards-3" style="max-width:680px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#127760;</div><h3>Online 24/7</h3></div>
+    <div class="card"><div class="card-icon">&#127968;</div><h3>Stable Home</h3></div>
+    <div class="card"><div class="card-icon">&#128187;</div><h3>Not Your Laptop</h3></div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 12: WHAT OPENCLAW DOES ======== -->
+<div class="slide">
+  <h1>What OpenClaw Does</h1>
+  <div class="sub">The operating environment</div>
+  <div class="cards cards-2" style="max-width:560px;margin-left:auto;margin-right:auto">
+    <div class="card" style="border-color:var(--purple)"><div class="card-icon">&#129504;</div><h3>AI Model</h3><p>The brain</p></div>
+    <div class="card" style="border-color:var(--teal)"><div class="card-icon">&#9881;&#65039;</div><h3>OpenClaw</h3><p>The environment that makes the brain usable</p></div>
+  </div>
+  <p class="lead" style="margin-top:24px">Configuration &middot; Channels &middot; Runtime &middot; Tools</p>
+</div>
+
+<!-- ======== SLIDE 13: WHERE INTELLIGENCE COMES FROM ======== -->
+<div class="slide">
+  <h1>Where the Intelligence<br>Comes From</h1>
+  <div class="sub">OpenClaw + Model = Agent</div>
+  <div class="cards cards-3" style="max-width:720px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#128736;&#65039;</div><h3>OpenClaw</h3><p>Structure &amp; execution</p></div>
+    <div class="card"><div class="card-icon">&#129504;</div><h3>Model</h3><p>Reasoning &amp; language</p></div>
+    <div class="card"><div class="card-icon">&#128221;</div><h3>Your Prompts</h3><p>Role &amp; behavior</p></div>
+  </div>
+  <p class="lead">A good agent = model + <span class="white">system around it</span>.</p>
+</div>
+
+<!-- ======== SECTION: SETUP ======== -->
+<div class="slide divider">
+  <div class="part-label">Part 2</div>
+  <h1>Setup</h1>
+  <div class="sub" style="color:var(--dim)">7 steps from zero to a running agent</div>
+</div>
+
+<!-- ======== SLIDE 15: ROADMAP ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Roadmap</div>
+  <h1>7 Steps</h1>
+  <div class="sub">Progress matters more than speed</div>
+  <div class="cards cards-4" style="max-width:640px">
+    <div class="card"><h3><span class="accent">1</span>&ensp;Create Server</h3></div>
+    <div class="card"><h3><span class="accent">2</span>&ensp;Connect SSH</h3></div>
+    <div class="card"><h3><span class="accent">3</span>&ensp;Install OpenClaw</h3></div>
+    <div class="card"><h3><span class="accent">4</span>&ensp;Onboarding</h3></div>
+    <div class="card"><h3><span class="accent">5</span>&ensp;Check Interface</h3></div>
+    <div class="card"><h3><span class="accent">6</span>&ensp;Connect Telegram</h3></div>
+    <div class="card" style="grid-column:span 2;border-color:var(--green)"><h3><span class="accent">7</span>&ensp;Launch Your Agent</h3></div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 16: SAFETY ======== -->
+<div class="slide">
+  <div class="badge badge-amber">Safety</div>
+  <h1>Safety Basics</h1>
+  <div class="sub">Minimal access first</div>
+  <div class="cards cards-2" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#128274;</div><h3>No Secret Pasting</h3><p>Unless you understand the context</p></div>
+    <div class="card"><div class="card-icon">&#128275;</div><h3>Minimal Permissions</h3><p>Only grant what you need</p></div>
+    <div class="card"><div class="card-icon">&#128273;</div><h3>Test Accounts</h3><p>Separate tokens when possible</p></div>
+    <div class="card"><div class="card-icon">&#9995;</div><h3>When Unclear — Stop</h3><p>Ask before proceeding</p></div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 17: PREFLIGHT ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Preflight</div>
+  <h1>Before We Start</h1>
+  <div class="sub">Check your readiness</div>
+  <div class="cards cards-3" style="max-width:680px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#128187;</div><h3>Laptop</h3></div>
+    <div class="card"><div class="card-icon">&#128246;</div><h3>Internet</h3></div>
+    <div class="card"><div class="card-icon">&#9993;&#65039;</div><h3>Email</h3></div>
+    <div class="card"><div class="card-icon">&#128172;</div><h3>Telegram</h3></div>
+    <div class="card"><div class="card-icon">&#128179;</div><h3>Payment Method</h3></div>
+    <div class="card"><div class="card-icon">&#128203;</div><h3>Copy &amp; Paste</h3></div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 18: STEP 1 ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Step 1</div>
+  <h1>Create a Server</h1>
+  <div class="sub">Your first infrastructure step</div>
+  <div class="cards cards-4" style="max-width:580px">
+    <div class="card"><h3>Choose a provider</h3></div>
+    <div class="card"><h3>Create an instance</h3></div>
+    <div class="card"><h3>Choose the OS</h3></div>
+    <div class="card"><h3>Get your IP address</h3></div>
+  </div>
+  <p class="big-quote">Output: <span class="accent">your own remote machine</span></p>
+</div>
+
+<!-- ======== SLIDE 19: CHECKPOINT ======== -->
+<div class="slide checkpoint">
+  <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <h1>You Have a Server</h1>
+  <div class="sub">Checkpoint</div>
+  <div class="cards cards-3" style="max-width:560px;margin-left:auto;margin-right:auto">
+    <div class="card" style="border-color:var(--green)"><h3>&#10003; Server Created</h3></div>
+    <div class="card" style="border-color:var(--green)"><h3>&#10003; Credentials</h3></div>
+    <div class="card" style="border-color:var(--green)"><h3>&#10003; IP Address</h3></div>
+  </div>
+  <div class="callout"><p>If not &mdash; fix it <span class="white">now</span>, not later.</p></div>
+</div>
+
+<!-- ======== SLIDE 20: STEP 2 ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Step 2</div>
+  <h1>Connect with SSH</h1>
+  <div class="sub">Log into your remote machine</div>
+  <p class="big-quote">Open terminal &rarr; Enter command &rarr; <span class="accent">You're in</span></p>
+  <div class="callout"><p>It feels technical, but it is just logging into another computer.</p></div>
+</div>
+
+<!-- ======== SLIDE 21: CHECKPOINT ======== -->
+<div class="slide checkpoint">
+  <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <h1>You Are Inside the Server</h1>
+  <div class="sub">Checkpoint</div>
+  <p class="big-quote">You crossed one of the <span class="accent">biggest beginner barriers</span>.</p>
+</div>
+
+<!-- ======== SLIDE 22: STEP 3 ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Step 3</div>
+  <h1>Install OpenClaw</h1>
+  <div class="sub">From plain machine to agent-ready</div>
+  <div class="cards cards-3" style="max-width:640px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#128230;</div><h3>Download</h3><p>Components</p></div>
+    <div class="card"><div class="card-icon">&#128295;</div><h3>Setup</h3><p>Environment</p></div>
+    <div class="card"><div class="card-icon">&#9989;</div><h3>Ready</h3><p>For onboarding</p></div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 23: CHECKPOINT ======== -->
+<div class="slide checkpoint">
+  <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <h1>Installation Finished</h1>
+  <div class="sub">Checkpoint</div>
+  <div class="callout callout-amber"><p>If something failed &mdash; <span class="white">do not improvise</span>. Normal troubleshooting point.</p></div>
+</div>
+
+<!-- ======== SLIDE 24: STEP 4 ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Step 4</div>
+  <h1>Onboarding</h1>
+  <div class="sub">From installed to configured</div>
+  <div class="cards cards-2" style="max-width:480px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#128273;</div><h3>Tokens</h3></div>
+    <div class="card"><div class="card-icon">&#9881;&#65039;</div><h3>Config</h3></div>
+    <div class="card"><div class="card-icon">&#128172;</div><h3>Channels</h3></div>
+    <div class="card"><div class="card-icon">&#9989;</div><h3>Ready</h3></div>
+  </div>
+  <div class="callout"><p>The system starts asking questions &mdash; that's normal.</p></div>
+</div>
+
+<!-- ======== SLIDE 25: CHECKPOINT ======== -->
+<div class="slide checkpoint">
+  <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <h1>OpenClaw Is Running</h1>
+  <div class="sub">Checkpoint</div>
+  <p class="big-quote">You now have a <span class="accent">live system</span>.</p>
+</div>
+
+<!-- ======== SLIDE 26: STEP 5 ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Step 5</div>
+  <h1>Check the Interface</h1>
+  <div class="sub">See it, not just the terminal</div>
+  <p class="big-quote">A visible interface makes it <span class="accent">feel real</span>.</p>
+</div>
+
+<!-- ======== SLIDE 27: CHECKPOINT ======== -->
+<div class="slide checkpoint">
+  <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <h1>The UI Works</h1>
+  <div class="sub">Checkpoint</div>
+  <p class="big-quote">You have a <span class="accent">working system base</span>.</p>
+</div>
+
+<!-- ======== SLIDE 28: STEP 6 ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Step 6</div>
+  <h1>Connect Telegram</h1>
+  <div class="sub">Give your agent a real channel</div>
+  <p class="big-quote">"Something on a server" &rarr; <span class="accent">"Something you can talk to"</span></p>
+</div>
+
+<!-- ======== SLIDE 29: STEP 7 ======== -->
+<div class="slide">
+  <div class="badge badge-blue">Step 7</div>
+  <h1>Create the First Agent</h1>
+  <div class="sub">The simplest useful version</div>
+  <div class="cards cards-3" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#127917;</div><h3>Give it a role</h3></div>
+    <div class="card"><div class="card-icon">&#128203;</div><h3>Set behavior</h3></div>
+    <div class="card"><div class="card-icon">&#128172;</div><h3>Test it</h3></div>
+  </div>
+  <div class="callout"><p>Do not build the perfect agent. Build <span class="white">one that works</span>.</p></div>
+</div>
+
+<!-- ======== SLIDE 30: CHECKPOINT — FIRST RESULT ======== -->
+<div class="slide checkpoint">
+  <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <h1>Your Agent Responds</h1>
+  <div class="sub">Key milestone</div>
+  <div class="cards cards-4" style="max-width:580px">
+    <div class="card" style="border-color:var(--green)"><h3>&#10003; Infrastructure</h3></div>
+    <div class="card" style="border-color:var(--green)"><h3>&#10003; Platform</h3></div>
+    <div class="card" style="border-color:var(--green)"><h3>&#10003; Environment</h3></div>
+    <div class="card" style="border-color:var(--green)"><h3>&#10003; Working Agent</h3></div>
+  </div>
+  <p class="big-quote">Not theory. A <span class="accent">real build</span>.</p>
+</div>
+
+<!-- ======== SLIDE 31: TROUBLESHOOTING ======== -->
+<div class="slide">
+  <div class="badge badge-amber">Troubleshooting</div>
+  <h1>If Something Breaks</h1>
+  <div class="sub">That does not mean you failed</div>
+  <div class="cards cards-3" style="max-width:600px;margin-left:auto;margin-right:auto">
+    <div class="card"><h3>Server / SSH</h3></div>
+    <div class="card"><h3>Tokens / Config</h3></div>
+    <div class="card"><h3>Channels</h3></div>
+  </div>
+  <p class="big-quote">Not panic. <span class="accent">Structured troubleshooting.</span></p>
+</div>
+
+<!-- ======== SECTION: WHAT'S NEXT ======== -->
+<div class="slide divider">
+  <div class="part-label">Part 3</div>
+  <h1>What's Next</h1>
+  <div class="sub" style="color:var(--dim)">Your new foundation</div>
+</div>
+
+<!-- ======== SLIDE 33: WHAT YOU HAVE ======== -->
+<div class="slide">
+  <h1>What You Have Now</h1>
+  <div class="sub">Your foundation</div>
+  <div class="cards cards-3" style="max-width:680px;margin-left:auto;margin-right:auto">
+    <div class="card"><div class="card-icon">&#9729;&#65039;</div><h3>Server</h3></div>
+    <div class="card"><div class="card-icon">&#9881;&#65039;</div><h3>Agent Environment</h3></div>
+    <div class="card"><div class="card-icon">&#128187;</div><h3>Working Interface</h3></div>
+    <div class="card"><div class="card-icon">&#128172;</div><h3>Connected Channel</h3></div>
+    <div class="card"><div class="card-icon">&#129302;</div><h3>Basic Agent</h3></div>
+    <div class="card" style="border-color:var(--green)"><div class="card-icon">&#128640;</div><h3>Ready to Iterate</h3></div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 34: NEXT STEPS ======== -->
+<div class="slide">
+  <h1>After the Workshop</h1>
+  <div class="sub">Small iteration beats big ambition</div>
+  <div class="cards cards-4" style="max-width:580px">
+    <div class="card"><h3>Improve your prompt</h3></div>
+    <div class="card"><h3>Test one use case</h3></div>
+    <div class="card"><h3>Change the role</h3></div>
+    <div class="card"><h3>Try a real workflow</h3></div>
+  </div>
+</div>
+
+<!-- ======== SLIDE 35: CLOSING ======== -->
+<div class="slide">
+  <h1>Keep Building</h1>
+  <div class="sub">This is a starting point, not a finish line</div>
+  <p class="big-quote">The people who get value are not the smartest in the room.<br>They are the ones who <span class="accent">keep building</span>.</p>
+</div>
+
+<div class="progress" id="prog"></div>
+<div class="counter" id="ctr"></div>
+<div class="nav">
+  <button onclick="prev()" aria-label="Previous">&#8592;</button>
+  <button onclick="next()" aria-label="Next">&#8594;</button>
+</div>
+
+<script>
+const S=document.querySelectorAll('.slide'),T=S.length;let C=0;
+function go(i){if(i<0||i>=T)return;S[C].classList.remove('active');C=i;S[C].classList.add('active');
+document.getElementById('prog').style.width=((C+1)/T*100)+'%';
+document.getElementById('ctr').textContent=(C+1)+' / '+T}
+function next(){go(C+1)}function prev(){go(C-1)}
+document.addEventListener('keydown',e=>{
+if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next()}
+else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+else if(e.key==='Home'){e.preventDefault();go(0)}
+else if(e.key==='End'){e.preventDefault();go(T-1)}});
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX},{passive:true});
+document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?next():prev()}});
+go(0);
+</script>
+</body>
+</html>
