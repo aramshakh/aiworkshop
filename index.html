@@ -50,7 +50,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .inner{max-width:880px;width:100%}
 
 /* ── Type scale (projection-optimized) ──
-   Display:  4.5rem  — section dividers only
+   Display:  4.8rem  — section dividers only
    H1:       3.4rem  — slide headlines
    Quote:    2.2rem  — key takeaways
    Sub:      1.5rem  — subtitles (amber, light weight = contrast with h1)
@@ -68,6 +68,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
 
 /* Cards grid */
 .cards{display:grid;gap:14px;margin:28px 0;text-align:left}
+.cards-1{grid-template-columns:1fr}
 .cards-2{grid-template-columns:1fr 1fr}
 .cards-3{grid-template-columns:1fr 1fr 1fr}
 .cards-4{grid-template-columns:1fr 1fr;max-width:720px;margin-left:auto;margin-right:auto}
@@ -130,7 +131,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
 .about-right{flex:1}
 .career-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .tag{font-family:'Space Grotesk',sans-serif;display:inline-block;padding:5px 14px;border-radius:4px;font-size:.8rem;font-weight:600;background:var(--bg2);border:1px solid var(--border);color:var(--dim)}
-.tag-green{background:rgba(232,145,58,.1);border-color:rgba(232,145,58,.25);color:var(--amber)}
+.tag-accent{background:rgba(232,145,58,.1);border-color:rgba(232,145,58,.25);color:var(--amber)}
 .about-list{list-style:none;margin:16px 0}
 .about-list li{font-size:1.1rem;color:var(--gray);padding-left:24px;position:relative;margin-bottom:12px;line-height:1.6}
 .about-list li::before{content:'';position:absolute;left:0;top:10px;width:8px;height:8px;border-radius:2px;background:var(--amber);transform:rotate(45deg)}
@@ -283,7 +284,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
       </div>
       <div class="about-right">
         <div class="career-tags">
-          <span class="tag tag-green">Founder @ Empy.ai</span>
+          <span class="tag tag-accent">Founder @ Empy.ai</span>
           <span class="tag">Draper University</span>
           <span class="tag">Krisp</span>
           <span class="tag">HSE — Psychotherapy</span>
@@ -587,7 +588,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
 <div class="slide">
   <div class="badge badge-amber">Important Update</div>
   <h1>Claude + OpenClaw</h1>
-  <div class="sub">Claude subscriptions no longer work with OpenClaw</div>
+  <div class="sub">Using Claude as your agent's AI model (not as your personal assistant — that's fine)</div>
   <div class="cards cards-2" style="max-width:640px;margin-left:auto;margin-right:auto">
     <div class="card" style="border-color:var(--error)">
       <div class="card-icon">&#9940;</div>
@@ -847,6 +848,14 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
   <div class="timer-wrap"><div class="timer-controls" id="tc-6"><input type="number" class="timer-input" id="ti-6" value="7" min="1" max="30"><span class="timer-label">min</span><button class="timer-start" onclick="startTimer(6)">Start</button></div><div class="timer-display" id="td-6"></div><button class="timer-btn" id="tb-6" onclick="openTimer(6)">&#9202; Timer</button><button class="timer-stop" id="ts-6" onclick="stopTimer(6)">Stop</button></div>
 </div>
 
+<!-- ======== CHECKPOINT: TELEGRAM ======== -->
+<div class="slide checkpoint">
+  <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <h1>Telegram Connected</h1>
+  <div class="sub">Checkpoint</div>
+  <p class="big-quote">Your bot is live in Telegram. <span class="accent">One step left.</span></p>
+</div>
+
 <!-- ======== GROUP CHECK 6: TELEGRAM ======== -->
 <div class="slide group">
   <div class="group-icon">&#128101;</div>
@@ -1002,7 +1011,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;font-weight:700;color
   <div class="sub">This is just your starting point</div>
   <div class="qr-layout">
     <div class="qr-frame">
-      <img src="qr-linkedin.jpg" alt="Join t.me/armvibecode" style="width:180px;height:180px">
+      <img src="qr-community.jpg" alt="Join t.me/armvibecode" style="width:180px;height:180px">
     </div>
     <div class="qr-right">
       <p class="lead" style="text-align:left;max-width:none">If you want to continue:</p>
