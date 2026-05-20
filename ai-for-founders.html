@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI for Founders — Stop Being the Bottleneck</title>
+  <meta name="description" content="A practical 4-week workshop for founders to build AI workflows for communication, meetings, delegation, and execution." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #252A35;
+      --bg2: #2E3440;
+      --bg3: #383F4C;
+      --border: #444C5A;
+      --green: #00C853;
+      --blue: #4A9FFF;
+      --teal: #2DD4BF;
+      --purple: #8385C2;
+      --amber: #F0A04B;
+      --white: #F5F5F5;
+      --gray: #C0C6D0;
+      --dim: #8891A0;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--gray);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 10%,rgba(232,145,58,.06) 0%,transparent 40%),radial-gradient(ellipse at 80% 90%,rgba(0,200,83,.05) 0%,transparent 35%);pointer-events:none;z-index:0}
+    a { color: inherit; }
+    .page { position: relative; z-index: 1; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(37, 42, 53, 0.84);
+      border-bottom: 1px solid rgba(68, 76, 90, 0.7);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 0;
+    }
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
+      color: var(--dim);
+    }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--white); }
+    .hero {
+      padding: 84px 0 44px;
+      border-bottom: 1px solid rgba(68, 76, 90, 0.45);
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 12px;
+      border: 1px solid rgba(232,145,58,.25);
+      background: rgba(232,145,58,.08);
+      color: var(--amber);
+      border-radius: 999px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+    h1 { font-size: clamp(2.7rem, 5vw, 5rem); max-width: 11ch; }
+    .hero-sub {
+      margin-top: 18px;
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      max-width: 56ch;
+      color: var(--gray);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.85fr;
+      gap: 28px;
+      align-items: end;
+      margin-top: 34px;
+    }
+    .panel, .card, .week-card, .track-card {
+      background: rgba(46, 52, 64, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.14);
+    }
+    .panel { padding: 22px; }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .stat {
+      background: rgba(56, 63, 76, 0.68);
+      border: 1px solid rgba(68, 76, 90, 0.7);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .stat-label {
+      color: var(--dim);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 10px;
+    }
+    .stat-value {
+      color: var(--white);
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+    .highlight-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .highlight-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      margin-top: 8px;
+      border-radius: 3px;
+      transform: rotate(45deg);
+      background: var(--amber);
+      flex: 0 0 auto;
+    }
+    section {
+      padding: 62px 0;
+      border-bottom: 1px solid rgba(68, 76, 90, 0.35);
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 28px;
+    }
+    .section-kicker {
+      color: var(--amber);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+    }
+    .section-copy {
+      max-width: 64ch;
+      color: var(--gray);
+      font-size: 1.02rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card { padding: 22px; }
+    .card h3 { font-size: 1.12rem; margin-bottom: 10px; }
+    .card p { margin: 0; color: var(--gray); font-size: 0.96rem; }
+    .muted { color: var(--dim); }
+    .weeks {
+      display: grid;
+      gap: 18px;
+    }
+    .week-card { padding: 24px; }
+    .week-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+    .week-label {
+      color: var(--amber);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+    }
+    .week-title { font-size: 1.55rem; }
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'Space Grotesk', sans-serif;
+      border: 1px solid rgba(74,159,255,.22);
+      color: var(--blue);
+      background: rgba(74,159,255,.08);
+      white-space: nowrap;
+    }
+    .week-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .week-card ul, .track-card ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--gray);
+    }
+    .week-card li, .track-card li { margin-bottom: 8px; }
+    .subhead {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--white);
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .tracks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .track-card { padding: 22px; }
+    .track-tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--teal);
+      background: rgba(45,212,191,.09);
+      border: 1px solid rgba(45,212,191,.22);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .cta {
+      padding: 72px 0 90px;
+    }
+    .cta-box {
+      padding: 30px;
+      background: linear-gradient(135deg, rgba(240,160,75,.08), rgba(46,52,64,.92));
+      border: 1px solid rgba(240,160,75,.18);
+      border-radius: 22px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 0.96rem;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: #0f141a;
+      background: var(--amber);
+    }
+    .btn-secondary {
+      color: var(--white);
+      background: rgba(56,63,76,.6);
+      border-color: var(--border);
+    }
+    .fine {
+      font-size: 0.93rem;
+      color: var(--dim);
+    }
+    footer {
+      padding: 22px 0 36px;
+      color: var(--dim);
+      font-size: 0.9rem;
+    }
+    @media (max-width: 960px) {
+      .hero-grid, .section-head, .cta-box, .tracks, .cards, .week-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(var(--max), calc(100% - 28px)); }
+      .hero { padding-top: 56px; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .week-top { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="./ai-for-founders.html">AI for Founders</a>
+        <div class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#program">Program</a>
+          <a href="#tracks">Tracks</a>
+          <a href="#format">Format</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="overview">
+      <div class="container">
+        <div class="eyebrow">4-week workshop</div>
+        <h1>Stop being the bottleneck in your own company.</h1>
+        <p class="hero-sub">
+          A practical AI workshop for founders who want better communication, cleaner follow-through,
+          faster delegation, and workflows that actually survive after the course.
+        </p>
+
+        <div class="hero-grid">
+          <div class="panel">
+            <h3 style="font-size:1.3rem;margin-bottom:12px;">What participants build</h3>
+            <ul class="highlight-list">
+              <li><span class="dot"></span><span>A communication workflow for inbox triage, reply drafting, and follow-up</span></li>
+              <li><span class="dot"></span><span>A meeting-to-action workflow for decisions, owners, deadlines, and delegation briefs</span></li>
+              <li><span class="dot"></span><span>One business-specific growth workflow: proposals, founder content, or stakeholder updates</span></li>
+            </ul>
+          </div>
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="stat-label">Format</div>
+              <div class="stat-value">4 weeks · 1 live session / week</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Session length</div>
+              <div class="stat-value">2 hours</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Best fit</div>
+              <div class="stat-value">Founder + operator pair</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Under the hood</div>
+              <div class="stat-value">Hermes + Claude + Cowork</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Who this is for</div>
+            <h2>Built for founders who still carry too much of the operating load themselves.</h2>
+          </div>
+          <div class="section-copy">
+            This workshop is designed for startup founders, founder-operators, small business owners,
+            and agency or consulting founders who are still deeply involved in communication, sales,
+            follow-up, delegation, and execution. No technical background is required.
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h3>Communication overload</h3>
+            <p>Too many incoming messages, slow reply cycles, and routine communication that keeps landing back on the founder.</p>
+          </div>
+          <div class="card">
+            <h3>Meetings without movement</h3>
+            <p>Calls happen, but next steps, owners, and deadlines stay fuzzy or disappear completely.</p>
+          </div>
+          <div class="card">
+            <h3>Context trapped in your head</h3>
+            <p>The founder becomes the bottleneck because too much operating context is hard to share, structure, and delegate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Program</div>
+            <h2>Four weeks. Three working workflows. One cleaner operating rhythm.</h2>
+          </div>
+          <div class="section-copy">
+            The course is outcome-first. Tools matter, but the program is built around recurring founder bottlenecks and practical workflows that can be reused in real work.
+          </div>
+        </div>
+
+        <div class="weeks">
+          <article class="week-card">
+            <div class="week-top">
+              <div>
+                <div class="week-label">Week 0</div>
+                <h3 class="week-title">Setup + Founder Bottleneck Map</h3>
+              </div>
+              <div class="pill">Async prep</div>
+            </div>
+            <div class="week-grid">
+              <div>
+                <div class="subhead">Participants do</div>
+                <ul>
+                  <li>Set up Hermes and confirm Claude access</li>
+                  <li>Connect Cowork where relevant</li>
+                  <li>Map recurring founder bottlenecks</li>
+                  <li>Choose 2–3 target workflows for the course</li>
+                </ul>
+              </div>
+              <div>
+                <div class="subhead">Outcome</div>
+                <ul>
+                  <li>Working setup</li>
+                  <li>Clear bottleneck map</li>
+                  <li>Defined focus for the live sessions</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="week-card">
+            <div class="week-top">
+              <div>
+                <div class="week-label">Week 1</div>
+                <h3 class="week-title">Communication Workflow</h3>
+              </div>
+              <div class="pill">Core workflow</div>
+            </div>
+            <div class="week-grid">
+              <div>
+                <div class="subhead">Participants work on</div>
+                <ul>
+                  <li>Inbox triage</li>
+                  <li>Draft replies</li>
+                  <li>Follow-up generation</li>
+                  <li>Short summaries and handoff notes</li>
+                  <li>Reusable communication templates</li>
+                </ul>
+              </div>
+              <div>
+                <div class="subhead">Outcome</div>
+                <ul>
+                  <li>Working communication workflow</li>
+                  <li>2–3 reusable templates</li>
+                  <li>One real workflow tested on live company material</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="week-card">
+            <div class="week-top">
+              <div>
+                <div class="week-label">Week 2</div>
+                <h3 class="week-title">Meetings, Decisions, and Delegation</h3>
+              </div>
+              <div class="pill">Core workflow</div>
+            </div>
+            <div class="week-grid">
+              <div>
+                <div class="subhead">Participants work on</div>
+                <ul>
+                  <li>Turning meeting notes or transcripts into summaries</li>
+                  <li>Extracting decisions and unresolved questions</li>
+                  <li>Creating owner and deadline lists</li>
+                  <li>Generating delegation briefs</li>
+                  <li>Producing post-meeting action packs</li>
+                </ul>
+              </div>
+              <div>
+                <div class="subhead">Outcome</div>
+                <ul>
+                  <li>Repeatable meeting-to-action workflow</li>
+                  <li>Reusable delegation template</li>
+                  <li>One real action pack from participant material</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="week-card">
+            <div class="week-top">
+              <div>
+                <div class="week-label">Week 3</div>
+                <h3 class="week-title">Choose Your Growth Workflow</h3>
+              </div>
+              <div class="pill">Elective track</div>
+            </div>
+            <p class="muted" style="margin: 0 0 14px;">Participants choose one track based on their business context.</p>
+            <div class="tracks" id="tracks">
+              <div class="track-card">
+                <div class="track-tag">Track A</div>
+                <h3>Sales and Proposals</h3>
+                <ul>
+                  <li>Proposal drafts</li>
+                  <li>Tailored offers</li>
+                  <li>Follow-up sequences</li>
+                  <li>Reusable sales-writing workflow</li>
+                </ul>
+              </div>
+              <div class="track-card">
+                <div class="track-tag">Track B</div>
+                <h3>Founder Brand and Content</h3>
+                <ul>
+                  <li>Voice and theme capture</li>
+                  <li>Posts from notes or transcripts</li>
+                  <li>Short content plan</li>
+                  <li>Publishable founder-led drafts</li>
+                </ul>
+              </div>
+              <div class="track-card">
+                <div class="track-tag">Track C</div>
+                <h3>Investor or Stakeholder Updates</h3>
+                <ul>
+                  <li>Weekly or monthly updates</li>
+                  <li>KPI narrative framing</li>
+                  <li>Clear asks</li>
+                  <li>Stakeholder memo structure</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="week-card">
+            <div class="week-top">
+              <div>
+                <div class="week-label">Week 4</div>
+                <h3 class="week-title">Capstone + 30-Day Rollout Plan</h3>
+              </div>
+              <div class="pill">Operationalization</div>
+            </div>
+            <div class="week-grid">
+              <div>
+                <div class="subhead">Participants work on</div>
+                <ul>
+                  <li>Reviewing all workflows built during the course</li>
+                  <li>Identifying where the founder is still the bottleneck</li>
+                  <li>Deciding what should be daily, weekly, or on-demand</li>
+                  <li>Clarifying founder, operator, and AI roles</li>
+                </ul>
+              </div>
+              <div>
+                <div class="subhead">Outcome</div>
+                <ul>
+                  <li>Three working workflows</li>
+                  <li>Prompt and template library</li>
+                  <li>Practical 30-day rollout plan</li>
+                  <li>Clear path for continued use after the course</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="format">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Format & approach</div>
+            <h2>Hands-on, outcome-first, and built on real company materials.</h2>
+          </div>
+          <div class="section-copy">
+            This is not a lecture series and not generic prompt training. Each session is built around practical workflows, short framing, live examples, guided implementation, and outputs participants can use immediately.
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h3>Format</h3>
+            <p>4 weeks · 1 live session per week · 2 hours per session · light async preparation between sessions.</p>
+          </div>
+          <div class="card">
+            <h3>Best participation model</h3>
+            <p>Founder + operator / assistant pairs work especially well, but solo founders can join too.</p>
+          </div>
+          <div class="card">
+            <h3>Suggested materials</h3>
+            <p>Bring sample emails, meeting notes or transcripts, proposals, updates, and past founder content where relevant.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <div class="section-kicker">Final promise</div>
+            <h2>Move from using AI occasionally to using it as part of how you actually operate.</h2>
+            <p class="section-copy" style="margin-top: 14px;">
+              The goal is not to make participants experts in tools. The goal is to help founders build practical workflows that save time, reduce chaos, improve follow-through, and make them less of a bottleneck in their own company.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://github.com/aramshakh/aiworkshop">View source</a>
+              <a class="btn btn-secondary" href="./index.html">Open workshop site</a>
+            </div>
+          </div>
+          <div class="panel">
+            <h3 style="font-size:1.1rem;margin-bottom:12px;">Powered under the hood by</h3>
+            <ul class="highlight-list">
+              <li><span class="dot" style="background:var(--green)"></span><span><strong style="color:var(--white)">Hermes</strong> for memory, workflow continuity, and operating structure</span></li>
+              <li><span class="dot" style="background:var(--blue)"></span><span><strong style="color:var(--white)">Claude</strong> for reasoning, drafting, and synthesis</span></li>
+              <li><span class="dot" style="background:var(--teal)"></span><span><strong style="color:var(--white)">Cowork</strong> for connectors and embedded workflow execution</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">AI for Founders · GitHub Pages course page</div>
+    </footer>
+  </div>
+</body>
+</html>
